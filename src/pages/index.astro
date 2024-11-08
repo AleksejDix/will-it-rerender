@@ -1,0 +1,148 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ReactApp from '../frameworks/react/ReactApp';
+import OptimizedReactApp from '../frameworks/react/OptimizedReactApp';
+import VueApp from '../frameworks/vue/VueApp.vue';
+import SvelteApp from '../frameworks/svelte/SvelteApp.svelte';
+import RenderCounter from '../components/RenderCounter';
+---
+
+<Layout title="Multi-Framework Todo Apps">
+  <main>
+    <h1>Todo Apps in <span class="text-gradient">Multiple Frameworks</span></h1>
+    <RenderCounter client:load />
+    <div class="grid-layout">
+      <div class="framework-section react-section">
+        <ReactApp client:load />
+      </div>
+      <div class="framework-section vue-section">
+        <OptimizedReactApp client:load />
+      </div>
+      <div class="framework-section vue-section">
+        <VueApp client:load />
+      </div>
+      <div class="framework-section svelte-section">
+        <SvelteApp client:load />
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  main {
+    margin: auto;
+    padding: 1rem;
+    width: 100%;
+    max-width: 100%;
+    color: white;
+    font-size: 20px;
+    line-height: 1.6;
+  }
+  h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    margin-bottom: 1em;
+  }
+  .text-gradient {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+  }
+  .grid-layout {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    padding: 2rem;
+  }
+  .framework-section {
+    padding: 2rem;
+    background: rgba(var(--accent-dark), 0.2);
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .react-apps {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .divider {
+    height: 1px;
+    background: rgba(var(--accent-light), 0.1);
+    margin: 1rem 0;
+  }
+  :global(.todo-container) {
+    width: 100%;
+    max-width: 400px;
+  }
+  :global(.todo-form) {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  :global(.todo-form input) {
+    flex: 1;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid rgba(var(--accent-light), 0.2);
+    background: rgba(var(--accent-light), 0.1);
+    color: white;
+  }
+  :global(.todo-form button) {
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    border: 1px solid rgba(var(--accent-light), 0.2);
+    background: rgba(var(--accent-light), 0.2);
+    color: rgb(var(--accent-light));
+    cursor: pointer;
+  }
+  :global(.todo-item) {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-bottom: 1px solid rgba(var(--accent-light), 0.1);
+  }
+  :global(.todo-item span) {
+    flex: 1;
+  }
+  :global(.todo-item button) {
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid rgba(255, 70, 70, 0.2);
+    background: rgba(255, 70, 70, 0.2);
+    color: rgb(255, 70, 70);
+    cursor: pointer;
+  }
+  :global(.todo-stats) {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: rgba(var(--accent-light), 0.8);
+  }
+  :global(.render-counter) {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: rgba(var(--accent-dark), 0.3);
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+  }
+  :global(.render-counter .count) {
+    font-weight: bold;
+    margin-left: 0.5rem;
+  }
+  :global(.count.react) { color: #61dafb; }
+  :global(.count.vue) { color: #42b883; }
+  :global(.count.svelte) { color: #ff3e00; }
+  :global(.count.angular) { color: #dd1b16; }
+</style>
